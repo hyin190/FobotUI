@@ -29,6 +29,30 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAdjeObL8_wLLg1_shH6OHqFQihkO2NMhw",
+    authDomain: "chatbot-f36b5.firebaseapp.com",
+    projectId: "chatbot-f36b5",
+    storageBucket: "chatbot-f36b5.appspot.com",
+    messagingSenderId: "701879203276",
+    appId: "1:701879203276:web:0a1b18e3f5881248949969",
+    measurementId: "G-P6LRXBD71F"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

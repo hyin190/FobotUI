@@ -1,14 +1,14 @@
 import React from 'react';
 import './login.css';
 import '../App.css';
-
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   
   const [password, setPassword] = React.useState("")
   const [emailUserName, setEmail] = React.useState("")
   const [info, setInfo] = React.useState("")
-//   var  history= useHistory();
+  var  history= useHistory();
 
 
   function handleLoginButton() {
@@ -20,9 +20,9 @@ export default function Login() {
      
   }
 
-//   function handleNavToReg(){
-//     history.push('/register')
-//   }
+  function handleNavToReg(){
+    history.push('/register')
+  }
 
  
 
@@ -61,7 +61,7 @@ export default function Login() {
           >
           Login
             </button>
-        {/* <p className="link"><a onClick={handleNavToReg}>Register</a></p> */}
+        {<p className="link"><a onClick={handleNavToReg}>Register</a></p>}
     </div>
   );
 }
