@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 // import "./login.css";
 // import Alert from "@material-ui/lab/Alert";
+import firebase from "../firebase";
 
 
 
@@ -29,6 +30,17 @@ export default function Register() {
     //   if (password === c_password) {
     //     socket.emit("register", data);
     //   }
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode == 'auth/weak-password') {
+        alert('The password is too weak.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+    });
     }
   }
 

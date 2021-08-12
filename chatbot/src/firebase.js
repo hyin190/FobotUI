@@ -10,22 +10,19 @@ import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
 
-// TODO: Replace the following with your app's Firebase project configuration
-// For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
-const firebaseConfig = {
-    // ...
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
 var firebaseConfig = {
-    apiKey: "AIzaSyAdjeObL8_wLLg1_shH6OHqFQihkO2NMhw",
-    authDomain: "chatbot-f36b5.firebaseapp.com",
-    projectId: "chatbot-f36b5",
-    storageBucket: "chatbot-f36b5.appspot.com",
-    messagingSenderId: "701879203276",
-    appId: "1:701879203276:web:0a1b18e3f5881248949969",
-    measurementId: "G-P6LRXBD71F"
+    apiKey: "AIzaSyCI2vdERLGu3nKte9s2iX8zBNGcuLNw9kQ",
+    authDomain: "test-bot-hldq.firebaseapp.com",
+    databaseURL: "https://test-bot-hldq-default-rtdb.firebaseio.com",
+    projectId: "test-bot-hldq",
+    storageBucket: "test-bot-hldq.appspot.com",
+    messagingSenderId: "102684075085",
+    appId: "1:102684075085:web:8856a30e60aa994b94e804"
   };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics()
+
+export default firebase;
