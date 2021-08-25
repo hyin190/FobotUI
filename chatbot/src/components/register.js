@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-// import "./login.css";
-// import Alert from "@material-ui/lab/Alert";
-import firebase from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  auth,
+  registerWithEmailAndPassword,
+} from "../firebase";
 
 
 
 export default function Register() {
-  const [userName, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [c_password, setCPassowrd] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [info, setInfo] = React.useState("");
+  const [userName, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [c_password, setCPassowrd] = useState("");
+  const [email, setEmail] = useState("");
+  const [info, setInfo] = useState("");
+  const [user, loading, error] = useAuthState(auth);
   var history = useHistory();
+
 
   function handleReg() {
     const data = { userName: userName, password: password, email: email };
@@ -27,25 +31,14 @@ export default function Register() {
     }
 
     if ((userName !== "") & (password !== "") & (email !== "") & (/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email))) {
-    //   if (password === c_password) {
-    //     socket.emit("register", data);
-    //   }
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-      } else {
-        alert(errorMessage);
+      if (registerWithEmailAndPassword(userName, email, password)){
+        history.push('/')
       }
-      console.log(error);
-    });
     }
   }
 
-  function handleNavToLogin() {
-    history.push("/login");
+  function handleNavToLogin(){
+    history.push('/')
   }
 
  

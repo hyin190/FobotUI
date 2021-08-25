@@ -13,6 +13,7 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   const app = firebase.initializeApp(firebaseConfig);
+  const defaultImage = "gs://test-bot-hldq.appspot.com/static material/default user/Twemoji_1f61d.svg.png";
   const auth = app.auth();
   const db = app.firestore();
   
@@ -29,39 +30,65 @@ var firebaseConfig = {
   
   const registerWithEmailAndPassword = async (name, email, password) => {
     try {
-      const res = await auth.createUserWithEmailAndPassword(email, password);
-      const user = res.user;
-      await db.collection("users").add({
-        uid: user.uid,
-        name,
-        authProvider: "local",
-        email,
+      const res = await auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
       });
+      const user = res.user;
+      let data = {
+        name: name,
+        authProvider: "local",
+        email: email,
+        icon: defaultImage
+      }
+      return userDefaultSetup(uid, data, db);
     } catch (err) {
       console.error(err);
       alert(err.message);
+      return false
     }
   };
+
+function userDefaultSetup(uid, data, db){
+  await db.collection("User").doc(user.uid).set(data).catch((error) => {
+    console.error("Error writing document: ", error);
+    return false
+});
+  await db.collection("User").doc(user.uid).collection("restaurants").doc("Empty").set({
+    status: "empty"
+  }).catch((error) => {
+    console.error("Error writing document: ", error);
+    return false;
+});
+  return true
+}
   
-  const sendPasswordResetEmail = async (email) => {
-    try {
-      await auth.sendPasswordResetEmail(email);
-      alert("Password reset link sent!");
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  };
+const sendPasswordResetEmail = async (email) => {
+  try {
+    await auth.sendPasswordResetEmail(email);
+    alert("Password reset link sent!");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+const logout = () => {
+  auth.signOut();
+};
   
-  const logout = () => {
-    auth.signOut();
-  };
-  
-  export {
-    auth,
-    db,
-    signInWithEmailAndPassword,
-    registerWithEmailAndPassword,
-    sendPasswordResetEmail,
-    logout,
-  };
+export {
+  auth,
+  db,
+  signInWithEmailAndPassword,
+  registerWithEmailAndPassword,
+  sendPasswordResetEmail,
+  logout,
+};

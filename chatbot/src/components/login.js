@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import './login.css';
 import '../App.css';
 import { useHistory } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, signInWithEmailAndPassword} from "../firebase";
 
 export default function Login() {
   
-  const [password, setPassword] = React.useState("")
-  const [emailUserName, setEmail] = React.useState("")
-  const [info, setInfo] = React.useState("")
+  const [password, setPassword] = useState("")
+  const [emailUserName, setEmail] = useState("")
+  const [info, setInfo] = useState("")
   const [user, loading, error] = useAuthState(auth);
   var  history= useHistory();
-
 
   function handleLoginButton() {
    
@@ -22,6 +22,10 @@ export default function Login() {
     else{
       signInWithEmailAndPassword(emailUserName, password)
     }
+  }
+
+  function handleNavToReg(){
+    history.push('/register')
   }
 
   return (
@@ -57,7 +61,7 @@ export default function Login() {
           >
           Login
             </button>
-        {<p className="link"><Link to="/register">Register</Link></p>}
+          {<p className="link"><a onClick={handleNavToReg}>Register</a></p>}
     </div>
   );
 }
