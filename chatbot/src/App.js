@@ -47,6 +47,8 @@ function App() {
     <Router basename={'/chatbot'}>
       <Switch>
         <Route exact path="/" component={Addproductcontent} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route path="/add-product" component={Addproductcontent} />
       </Switch>
     </Router>
