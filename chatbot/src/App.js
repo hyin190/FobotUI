@@ -1,5 +1,5 @@
-import Login from './components/login';
-import Register from "./components/register";
+import Login from './components/pages/login';
+import Register from "./components/pages/register";
 // import './App.css';
 import React from 'react';
 import {
@@ -19,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route path="/add-product" component={Addproductcontent} />
         </Switch>
       </Router>
     </div>

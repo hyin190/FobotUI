@@ -42,13 +42,17 @@ var firebaseConfig = {
         console.log(error);
       });
       const user = res.user;
-      let data = {
+      const data = {
         name: name,
-        authProvider: "local",
         email: email,
-        icon: defaultImage
+        authProvider: "local",
+        icon_image: defaultImage
       }
-      return userDefaultSetup(uid, data, db);
+      await db.collection("User").doc(user.uid).set(data);
+      await db.collection("User").doc(user.uid).collection("restaurants").doc("Empty").set({
+        status: "empty"
+      });
+      return true
     } catch (err) {
       console.error(err);
       alert(err.message);
@@ -56,19 +60,6 @@ var firebaseConfig = {
     }
   };
 
-function userDefaultSetup(uid, data, db){
-  await db.collection("User").doc(user.uid).set(data).catch((error) => {
-    console.error("Error writing document: ", error);
-    return false
-});
-  await db.collection("User").doc(user.uid).collection("restaurants").doc("Empty").set({
-    status: "empty"
-  }).catch((error) => {
-    console.error("Error writing document: ", error);
-    return false;
-});
-  return true
-}
   
 const sendPasswordResetEmail = async (email) => {
   try {
