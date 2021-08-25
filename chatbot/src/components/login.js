@@ -2,12 +2,14 @@ import React from 'react';
 import './login.css';
 import '../App.css';
 import { useHistory } from "react-router-dom";
+import { auth, signInWithEmailAndPassword} from "../firebase";
 
 export default function Login() {
   
   const [password, setPassword] = React.useState("")
   const [emailUserName, setEmail] = React.useState("")
   const [info, setInfo] = React.useState("")
+  const [user, loading, error] = useAuthState(auth);
   var  history= useHistory();
 
 
@@ -17,16 +19,10 @@ export default function Login() {
     if(password === ''|| emailUserName===''){
       setInfo("Please Enter All Your Login Information!");
     }
-     
+    else{
+      signInWithEmailAndPassword(emailUserName, password)
+    }
   }
-
-  function handleNavToReg(){
-    history.push('/register')
-  }
-
- 
-
-  
 
   return (
     <div className="card">
@@ -61,7 +57,7 @@ export default function Login() {
           >
           Login
             </button>
-        {<p className="link"><a onClick={handleNavToReg}>Register</a></p>}
+        {<p className="link"><Link to="/register">Register</Link></p>}
     </div>
   );
 }
