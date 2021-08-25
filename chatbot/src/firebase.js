@@ -1,14 +1,4 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import firebase from "firebase/app";
-// If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
-// import * as firebase from "firebase/app"
-
-// If you enabled Analytics in your project, add the Firebase SDK for Analytics
-import "firebase/analytics";
-
-// Add the Firebase products that you want to use
-import "firebase/auth";
-import "firebase/firestore";
+import firebase from "firebase";
 
 
 // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
@@ -22,7 +12,56 @@ var firebaseConfig = {
     appId: "1:102684075085:web:8856a30e60aa994b94e804"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics()
-
-export default firebase;
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = app.auth();
+  const db = app.firestore();
+  
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  
+  const signInWithEmailAndPassword = async (email, password) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+  
+  const registerWithEmailAndPassword = async (name, email, password) => {
+    try {
+      const res = await auth.createUserWithEmailAndPassword(email, password);
+      const user = res.user;
+      await db.collection("users").add({
+        uid: user.uid,
+        name,
+        authProvider: "local",
+        email,
+      });
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+  
+  const sendPasswordResetEmail = async (email) => {
+    try {
+      await auth.sendPasswordResetEmail(email);
+      alert("Password reset link sent!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+  
+  const logout = () => {
+    auth.signOut();
+  };
+  
+  export {
+    auth,
+    db,
+    signInWithEmailAndPassword,
+    registerWithEmailAndPassword,
+    sendPasswordResetEmail,
+    logout,
+  };
