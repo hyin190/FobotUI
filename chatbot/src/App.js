@@ -1,6 +1,6 @@
-import Login from './components/pages/login';
-import Register from "./components/pages/register";
-import HomePage from "./components/pages/home";
+import Login from './components/pages/loginPage';
+import Register from "./components/pages/registerPage";
+import HomePage from "./components/pages/homePage";
 // import './App.css';
 import React from 'react';
 import {

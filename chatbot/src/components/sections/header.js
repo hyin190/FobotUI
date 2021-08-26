@@ -1,76 +1,37 @@
-  
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import classes from "../../assets/mainStyle";
+import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  },
-  toolbarTitle: {
-    flex: 1,
-  },
-  toolbarSecondary: {
-    justifyContent: 'space-between',
-    overflowX: 'auto',
-  },
-  toolbarLink: {
-    padding: theme.spacing(1),
-    flexShrink: 0,
-  },
-}));
+import IconButton from '@material-ui/core/IconButton';
+import Toolbar from '@material-ui/core/Toolbar';
+import MenuIcon from '@material-ui/icons/Menu';
+import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export default function Header() {
-  const classes = useStyles();
+    const [open, setOpen] = React.useState(true);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
-  return (
-    <React.Fragment>
-      <Toolbar className={classes.toolbar}>
-        <Button size="small">Home</Button>
-        <Typography
-          component="h2"
-          variant="h5"
-          color="inherit"
-          align="center"
-          noWrap
-          className={classes.toolbarTitle}
-        >
-          Fobot
-        </Typography>
-      </Toolbar>
-      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-          <Link
-            color="inherit"
-            noWrap
-            key={"dashboard"}
-            variant="body2"
-          >
-            Dashboard
-          </Link>
-          <Link
-            color="inherit"
-            noWrap
-            key={"profile"}
-            variant="body2"
-          >
-            Profile
-          </Link>
-          <Link
-            color="inherit"
-            noWrap
-            key={"setting"}
-            variant="body2"
-          >
-            Setting
-          </Link>
-      </Toolbar>
-    </React.Fragment>
-  );
+    return (<AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <Toolbar className={classes.toolbar}>
+            <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+                <MenuIcon />
+            </IconButton>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                Fobot
+            </Typography>
+            </Toolbar>
+    </AppBar>)
 }
-
