@@ -1,7 +1,8 @@
 import Login from './components/pages/loginPage';
 import Register from "./components/pages/registerPage";
-import HomePage from "./components/pages/homePage";
-import OrderPage from "./components/pages/orderPage/orderPage";
+import HomePage from "./components/pages/home/homePage";
+import OrderPage from "./components/pages/order/orderPage";
+import BookingPage from "./components/pages/booking/bookingPage";
 // import './App.css';
 import React from 'react';
 import {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/order" component={OrderPage} />
+          <Route exact path="/booking" component={BookingPage} />
           <Route path="/add-product" component={Addproductcontent} />
         </Switch>
       </Router>

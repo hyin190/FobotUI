@@ -10,8 +10,6 @@ import PageSkeleton from '../../layouts/drawerHeader';
 
 
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
 
 
