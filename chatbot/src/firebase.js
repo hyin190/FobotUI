@@ -17,8 +17,6 @@ var firebaseConfig = {
   const auth = app.auth();
   const db = app.firestore();
   
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
-  
   const signInWithEmailAndPassword = async (email, password) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);

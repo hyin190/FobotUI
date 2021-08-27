@@ -1,6 +1,7 @@
 import Login from './components/pages/loginPage';
 import Register from "./components/pages/registerPage";
 import HomePage from "./components/pages/homePage";
+import OrderPage from "./components/pages/orderPage/orderPage";
 // import './App.css';
 import React from 'react';
 import {
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/order" component={OrderPage} />
           <Route path="/add-product" component={Addproductcontent} />
         </Switch>
       </Router>
