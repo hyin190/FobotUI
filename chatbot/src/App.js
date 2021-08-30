@@ -4,6 +4,7 @@ import HomePage from "./components/pages/home/homePage";
 import OrderPage from "./components/pages/order/orderPage";
 import BookingPage from "./components/pages/booking/bookingPage";
 import RestaurantPage from "./components/pages/restaurant/restaurantPage";
+import AddproductPage from './components/pages/addproduct/addproductPage';
 // import './App.css';
 import React from 'react';
 import {
@@ -12,9 +13,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-
-import Addproduct from './components/sections/Addproductcontent';
-import Addproductcontent from './components/sections/Addproductcontent';
 
 function App() {
   return (
@@ -27,7 +25,7 @@ function App() {
           <Route exact path="/order" component={OrderPage} />
           <Route exact path="/booking" component={BookingPage} />
           <Route exact path="/restaurant" component={RestaurantPage} />
-          <Route path="/add-product" component={Addproductcontent} />
+          <Route exact path="/addproduct" component={AddproductPage} />
         </Switch>
       </Router>
     </div>
