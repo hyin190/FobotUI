@@ -1,7 +1,10 @@
 import Login from './components/pages/loginPage';
 import Register from "./components/pages/registerPage";
-import HomePage from "./components/pages/homePage";
-import OrderPage from "./components/pages/orderPage/orderPage";
+import HomePage from "./components/pages/home/homePage";
+import OrderPage from "./components/pages/order/orderPage";
+import BookingPage from "./components/pages/booking/bookingPage";
+import RestaurantPage from "./components/pages/restaurant/restaurantPage";
+import AddproductPage from './components/pages/addproduct/addproductPage';
 // import './App.css';
 import React from 'react';
 import {
@@ -10,9 +13,6 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-
-import Addproduct from './components/sections/Addproductcontent';
-import Addproductcontent from './components/sections/Addproductcontent';
 
 function App() {
   return (

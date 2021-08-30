@@ -9,8 +9,6 @@ import Orders from './orders';
 
 
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles((theme) => ({
 
 
