@@ -20,13 +20,8 @@ export default function BookingPage() {
 
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-  const content = () => {
-    return (
-      <p>Booking</p>
-  );
-  };
 
   return(
-    <PageSkeleton content={content}/>
+    <p>Booking</p>
   );
 }

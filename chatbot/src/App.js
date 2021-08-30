@@ -22,6 +22,8 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/home" component={HomePage} />
+          <Route exact path="/order" component={OrderPage} />
+          <Route exact path="/booking" component={BookingPage} />
         </Switch>
       </Router>
     </div>
