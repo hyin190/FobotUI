@@ -1,5 +1,6 @@
 import React from 'react';
-import { auth, getcurrentuser} from "../../firebase";
+import { logout, getcurrentuser} from "../../firebase";
+import firebase from "../../firebase";
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,6 +19,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
+import { useHistory } from "react-router-dom";
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -113,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PageSkeleton(props) {
+  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -139,6 +143,15 @@ export default function PageSkeleton(props) {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             {getcurrentuser()}
           </Typography>
+          <button
+					type="submit"
+					fullWidth
+					variant="contained"
+					color="secondary"
+					onClick={handlelogout}
+					className={classes.submit}>
+					Logout
+          		</button>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -172,4 +185,8 @@ export default function PageSkeleton(props) {
       </main>
     </div>
   );
+  async function handlelogout(){
+		await logout()
+		history.push('/')
+	}
 }

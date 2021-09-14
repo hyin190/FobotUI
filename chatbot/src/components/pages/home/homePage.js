@@ -46,6 +46,8 @@ function Copyright() {
 
 const drawerWidth = 240;
 
+const dfMessenger = document.querySelector('df-messenger')
+dfMessenger.setAttribute("user-id","ok")
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -240,6 +242,7 @@ export default function HomePage(props) {
         <Route exact path="/booking">
           <BookingPage />
         </Route>
+        
       </Switch>
           <Box pt={4}>
             <Copyright />

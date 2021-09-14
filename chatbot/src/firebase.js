@@ -74,7 +74,7 @@ const sendPasswordResetEmail = async (email) => {
 };
 
 const logout = () => {
-  auth.signOut();
+  return auth.signOut();
 };
 
 
@@ -104,6 +104,8 @@ const getcurrentuser =()=>{
   return auth.currentUser.displayName
 };
 
+
+
 export {
   auth,
   db,
@@ -112,5 +114,6 @@ export {
   sendPasswordResetEmail,
   addRestaurant,
   logout,
-  getcurrentuser,
+  getcurrentuser
+  
 };
